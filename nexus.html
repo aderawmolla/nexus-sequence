@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus ERP SaaS Deployment - Sequence Diagram</title>
+
+  <!-- Import Mermaid -->
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    
+    // Initialize Mermaid with custom themes and options
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'forest',
+      sequence: {
+        actorMargin: 40,
+        width: 1200,
+        height: 800,
+        messageMargin: 15,
+        noteMargin: 15,
+        mirrorActors: true,
+        actorFontSize: 13,
+        noteFontSize: 12,
+        messageFontSize: 14
+      },
+    });
+  </script>
+
+  <!-- Import Tailwind CSS from CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center h-screen p-6">
+
+  <div class="w-full max-w-5xl bg-white rounded-lg shadow-lg">
+    <!-- Styled Title Container with Inline CSS -->
+    <div style="
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 0.5rem 0.5rem 0 0;
+      text-align: center;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    ">
+      <h1 style="
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      ">Nexus ERP SaaS Deployment</h1>
+      <p style="
+        font-size: 0.875rem;
+        opacity: 0.9;
+        margin-bottom: 0.25rem;
+      ">Sequence Diagram with Recommended Tech Stacks</p>
+      <div style="
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.75rem;
+        margin-top: 0.5rem;
+      ">
+        React/Angular/Vue | Node.js/FastAPI/Django | Frappe/ERPNext | OpenAI/LangChain
+      </div>
+    </div>
+
+    <div class="p-6">
+      <div class="mermaid">
+        sequenceDiagram
+        title Nexus ERP SaaS Deployment Workflow
+
+        participant Customer
+        participant LandingPage as LandingPage\n(React/Angular/Vue)
+        participant Backend as Backend\n(Node.js/FastAPI/Django)
+        participant AdminDashboard as Admin\n(React/Angular/Vue)
+        participant AI as AI Module\n(OpenAI/LangChain)
+        participant ERP as ERP System\n(Frappe/ERPNext)
+
+        %% === Phase 1: Landing and Signup ===
+        Customer->>LandingPage: Visit website
+        LandingPage-->>Customer: Display pricing options
+        Customer->>LandingPage: Select free trial
+        LandingPage->>Customer: Prompt login/signup
+        Customer->>LandingPage: Submit login/signup
+        LandingPage->>Backend: Validate & authenticate
+        Backend-->>LandingPage: Authentication successful
+        LandingPage->>AdminDashboard: Track customer status (free/paid)
+
+        %% === Phase 2: Trial Status Tracking ===
+        AdminDashboard->>Backend: Log trial status, timestamp, modules
+
+        %% === Phase 3: AI Module Recommendation ===
+        Customer->>LandingPage: Submit company description
+        LandingPage->>AI: Analyze company description
+        AI-->>LandingPage: Recommended ERP modules
+        LandingPage-->>Customer: Return module suggestions
+        Customer->>Backend: Confirm Modules
+
+        %% === Phase 4: ERP Deployment ===
+        Backend->>ERP: API call to deploy ERP instance
+        activate ERP
+        ERP-->>Backend: Return deployed ERP URL
+        deactivate ERP
+        Backend-->>Customer: Return deployed ERP URL
+        AdminDashboard->>Backend: Store customer ERP info
+
+        %% === Phase 5: Usage & Follow-up ===
+        Note over Customer,Backend: Customer uses ERP for 14 days
+        Backend->>Customer: Notify to upgrade or end trial
+        Customer-->>Backend: Decide to upgrade or decline
+        Backend->>AdminDashboard: Update status (paid/unpaid)
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
